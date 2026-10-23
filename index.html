@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Веб-сайт под заказ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--cobalt:#2335f0;--navy:#0f1840;--chalk:#eef1f8;--white:#fff;--sun:#ffd43b;
+--display:"Unbounded","Arial Black",Impact,sans-serif;--body:"Onest","Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--navy);background:var(--chalk);line-height:1.5;font-size:1.0625rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+
+.hero{background:var(--cobalt);color:var(--white);min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(1.5rem,5vw,4rem);position:relative;overflow:hidden}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,10.5vw,8.5rem);line-height:.95;letter-spacing:-.03em;max-width:12ch;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero p{font-size:clamp(1.15rem,2.6vw,1.6rem);margin:1.5rem 0 2rem;max-width:34ch;opacity:.92}
+.btn{display:inline-block;font-family:var(--display);font-weight:600;font-size:1rem;background:var(--sun);color:var(--navy);padding:1.1rem 2.4rem;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px)}
+.tag{position:absolute;top:clamp(1.5rem,5vw,4rem);right:clamp(1.5rem,5vw,4rem);background:var(--sun);color:var(--navy);font-family:var(--display);font-weight:800;padding:1rem 1.4rem;border-radius:14px 14px 14px 4px;transform:rotate(6deg);font-size:clamp(.95rem,2vw,1.3rem);line-height:1.15}
+.tag small{display:block;font-family:var(--body);font-weight:500;font-size:.8em}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+
+.order{max-width:980px;margin:0 auto;padding:clamp(3rem,8vw,6rem) clamp(1rem,4vw,2rem)}
+.order h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,5vw,3rem);letter-spacing:-.02em;line-height:1.05;margin-bottom:.75rem}
+.lead{max-width:52ch;margin-bottom:2.5rem;opacity:.8}
+fieldset{border:0;padding:0;margin:0 0 2.5rem}
+legend{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:1rem;padding:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span.card{display:block;height:100%;background:var(--white);border:2px solid transparent;border-radius:18px;padding:1.2rem 1.3rem;cursor:pointer;transition:border-color .15s,background .15s,transform .15s}
+.opt b{display:block;font-size:1.1rem;margin-bottom:.25rem}
+.opt small{font-size:.95rem;opacity:.75}
+.opt:hover span.card{transform:translateY(-2px)}
+.opt input:checked+span.card{border-color:var(--cobalt);background:var(--cobalt);color:var(--white)}
+.opt input:checked+span.card small{opacity:.9}
+.opt input:focus-visible+span.card{outline:3px solid var(--sun);outline-offset:3px}
+.opt{position:relative;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem}
+.chip{position:relative}
+.chip span{display:inline-block;background:var(--white);border:2px solid transparent;border-radius:999px;padding:.55rem 1.1rem;cursor:pointer;transition:background .15s,color .15s}
+.chip input:checked+span{background:var(--navy);color:var(--white)}
+.chip input:focus-visible+span{outline:3px solid var(--cobalt);outline-offset:3px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip em{font-style:normal;opacity:.65;margin-left:.3rem}
+
+.field{display:block;margin-bottom:1rem}
+.field span{display:block;margin-bottom:.35rem;font-weight:500}
+.field input,.field textarea{width:100%;font:inherit;color:inherit;background:var(--white);border:2px solid transparent;border-radius:14px;padding:.8rem 1rem}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--cobalt)}
+
+.sum{background:var(--navy);color:var(--white);border-radius:28px 28px 28px 6px;padding:clamp(1.4rem,4vw,2.4rem);display:grid;gap:1.5rem;grid-template-columns:1.2fr 1fr;align-items:center}
+.sum h3{font-family:var(--display);font-weight:600;font-size:1.1rem;margin-bottom:.75rem}
+.sum ul{list-style:none;padding:0;display:grid;gap:.3rem;opacity:.9}
+.price{background:var(--sun);color:var(--navy);border-radius:20px;padding:1.2rem 1.4rem;text-align:center}
+.price small{display:block;font-size:.9rem}
+.price strong{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2rem,6vw,3rem);line-height:1.1;margin:.2rem 0 1rem}
+.price.pop strong{animation:pop .35s ease}
+.price .btn{background:var(--navy);color:var(--white);width:100%;padding:1rem}
+@keyframes pop{50%{transform:scale(1.12)}}
+.note{font-size:.9rem;opacity:.7;margin-top:1rem}
+footer{text-align:center;padding:2rem 1rem 3rem;opacity:.7;font-size:.95rem}
+@media(max-width:720px){.sum{grid-template-columns:1fr}.tag{position:static;align-self:flex-start;margin-bottom:1.5rem;transform:rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="tag">от 1 500 ₽<small>готовый сайт</small></div>
+  <h1>Веб-сайт под заказ</h1>
+  <p>Купить можно тут. Выберите, какой сайт нужен, и отправьте заявку мне в Telegram.</p>
+  <div><a class="btn" href="#order">Купить</a></div>
+</header>
+
+<main class="order" id="order">
+  <h2>Соберите свой заказ</h2>
+  <p class="lead">Выберите параметры, и цена пересчитается сама. Заявка уйдёт мне в Telegram.</p>
+
+  <fieldset>
+    <legend>Какой сайт нужен?</legend>
+    <div class="grid">
+      <label class="opt"><input type="radio" name="type" value="land" data-name="Лендинг" checked><span class="card"><b>Лендинг</b><small>Одна страница: услуга или товар и форма заявки</small></span></label>
+      <label class="opt"><input type="radio" name="type" value="biz" data-name="Сайт для бизнеса"><span class="card"><b>Сайт для бизнеса</b><small>Несколько страниц: о компании, услуги, контакты</small></span></label>
+      <label class="opt"><input type="radio" name="type" value="shop" data-name="Интернет-магазин"><span class="card"><b>Интернет-магазин</b><small>Каталог товаров, корзина и приём заказов</small></span></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Какой дизайн?</legend>
+    <div class="grid">
+      <label class="opt"><input type="radio" name="design" value="0" data-name="Базовый" checked><span class="card"><b>Базовый</b><small>Аккуратный шаблон под ваши цвета и логотип</small></span></label>
+      <label class="opt"><input type="radio" name="design" value="1" data-name="Премиум"><span class="card"><b>Премиум</b><small>Продуманный стиль, свои шрифты и анимации</small></span></label>
+      <label class="opt"><input type="radio" name="design" value="2" data-name="Полностью уникальный"><span class="card"><b>Полностью уникальный</b><small>Дизайн с нуля под ваш бренд</small></span></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Срок разработки</legend>
+    <div class="grid">
+      <label class="opt"><input type="radio" name="term" value="1" data-name="7–14 дней" checked><span class="card"><b>7–14 дней</b><small>Обычный срок, без наценки</small></span></label>
+      <label class="opt"><input type="radio" name="term" value="1.33" data-name="Срочно, до 3 дней"><span class="card"><b>Срочно, до 3 дней</b><small>Наценка за срочность около 33%</small></span></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Нужные функции</legend>
+    <div class="chips">
+      <label class="chip"><input type="checkbox" data-price="300" data-name="Форма обратной связи"><span>Форма обратной связи<em>+300 ₽</em></span></label>
+      <label class="chip"><input type="checkbox" data-price="300" data-name="Галерея работ"><span>Галерея работ<em>+300 ₽</em></span></label>
+      <label class="chip"><input type="checkbox" data-price="400" data-name="Базовая SEO-настройка"><span>Базовая SEO-настройка<em>+400 ₽</em></span></label>
+      <label class="chip"><input type="checkbox" data-price="500" data-name="Анимации"><span>Анимации<em>+500 ₽</em></span></label>
+      <label class="chip"><input type="checkbox" data-price="700" data-name="Две языковые версии"><span>Две языковые версии<em>+700 ₽</em></span></label>
+      <label class="chip"><input type="checkbox" data-price="1500" data-name="Онлайн-оплата"><span>Онлайн-оплата<em>+1500 ₽</em></span></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Ваш бюджет и пожелания</legend>
+    <label class="field"><span>Бюджет, ₽ (необязательно)</span><input type="number" id="budget" min="0" step="100" inputmode="numeric" placeholder="Например, 3000"></label>
+    <label class="field"><span>Комментарий (необязательно)</span><textarea id="comment" rows="3" placeholder="Чем занимается ваш бизнес, какие сайты вам нравятся"></textarea></label>
+  </fieldset>
+
+  <section class="sum" aria-live="polite">
+    <div>
+      <h3>Ваш заказ</h3>
+      <ul id="list"></ul>
+      <p class="note">Это примерная цена. Точную сумму я подтвержу в Telegram после обсуждения.</p>
+    </div>
+    <div class="price" id="price">
+      <small>Примерная стоимость</small>
+      <strong id="total">1 500 ₽</strong>
+      <a class="btn" id="send" href="https://t.me/Sayd1n169" target="_blank" rel="noopener">Отправить заявку в Telegram</a>
+    </div>
+  </section>
+</main>
+
+<footer>Заявки принимаю в Telegram: <a href="https://t.me/Sayd1n169" target="_blank" rel="noopener">@Sayd1n169</a></footer>
+
+<script>
+// Цены в рублях: [базовый, премиум, полностью уникальный] для срока 7–14 дней.
+// Меняйте числа здесь, и сайт пересчитает всё сам.
+var PRICES = {
+  land: [1500, 2200, 3500],
+  biz:  [2200, 3000, 5000],
+  shop: [4000, 5500, 8500]
+};
+var TG = "Sayd1n169";
+
+function checked(name){ return document.querySelector('input[name="'+name+'"]:checked'); }
+function rub(n){ return n.toLocaleString("ru-RU") + " ₽"; }
+
+function update(){
+  var type = checked("type"), design = checked("design"), term = checked("term");
+  var feats = Array.prototype.slice.call(document.querySelectorAll('.chip input:checked'));
+  var base = PRICES[type.value][Number(design.value)];
+  var extra = feats.reduce(function(s, f){ return s + Number(f.dataset.price); }, 0);
+  var total = Math.round((base + extra) * Number(term.value) / 100) * 100;
+
+  var names = feats.map(function(f){ return f.dataset.name; });
+  var budget = document.getElementById("budget").value;
+  var comment = document.getElementById("comment").value.trim();
+
+  var items = [
+    "Сайт: " + type.dataset.name,
+    "Дизайн: " + design.dataset.name,
+    "Срок: " + term.dataset.name,
+    "Функции: " + (names.length ? names.join(", ") : "без дополнительных")
+  ];
+  var list = document.getElementById("list");
+  list.innerHTML = "";
+  items.forEach(function(t){ var li = document.createElement("li"); li.textContent = t; list.appendChild(li); });
+
+  document.getElementById("total").textContent = rub(total);
+  var box = document.getElementById("price");
+  box.classList.remove("pop"); void box.offsetWidth; box.classList.add("pop");
+
+  var msg = "Здравствуйте! Хочу заказать сайт.\n" + items.join("\n") +
+    "\nПримерная цена в конструкторе: " + rub(total) +
+    (budget ? "\nМой бюджет: " + rub(Number(budget)) : "") +
+    (comment ? "\nКомментарий: " + comment : "");
+  document.getElementById("send").href = "https://t.me/" + TG + "?text=" + encodeURIComponent(msg);
+}
+
+document.querySelectorAll("input, textarea").forEach(function(el){
+  el.addEventListener("input", update);
+  el.addEventListener("change", update);
+});
+update();
+</script>
+</body>
+</html>
